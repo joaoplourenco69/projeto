@@ -1,0 +1,21 @@
+{
+  "name": "tcc-rodolfo-api",
+  "version": "1.0.0",
+  "description": "API com autenticacao JWT, autorizacao, migrations e CRUD",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js",
+    "watch": "nodemon server.js",
+    "db:setup": "node scripts/setup-database.js",
+    "test": "node --test"
+  },
+  "license": "ISC",
+  "type": "commonjs",
+  "dependencies": {
+    "cors": "^2.8.6",
+    "express": "^5.2.1",
+    "mysql2": "^3.20.0",
+    "nodemon": "^3.1.14"
+  }
+}

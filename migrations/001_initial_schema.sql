@@ -1,0 +1,51 @@
+CREATE TABLE IF NOT EXISTS usuarios (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  nome VARCHAR(120) NOT NULL,
+  email VARCHAR(100) NOT NULL UNIQUE,
+  senha VARCHAR(255) NOT NULL,
+  cpf VARCHAR(14) NOT NULL UNIQUE,
+  tipo_usuario VARCHAR(50) DEFAULT 'Socio',
+  criado_em TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE IF NOT EXISTS categorias (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  nome VARCHAR(100) NOT NULL
+);
+
+CREATE TABLE IF NOT EXISTS noticias (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  titulo VARCHAR(255) NOT NULL,
+  conteudo TEXT NOT NULL,
+  categoria_id INT NOT NULL,
+  imagem_capa VARCHAR(255),
+  data_publicacao TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  CONSTRAINT fk_noticias_categoria
+    FOREIGN KEY (categoria_id) REFERENCES categorias(id)
+    ON DELETE RESTRICT
+);
+
+CREATE TABLE IF NOT EXISTS atletas (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  nome VARCHAR(120) NOT NULL,
+  apelido VARCHAR(80),
+  posicao VARCHAR(50),
+  nacionalidade VARCHAR(50),
+  foto VARCHAR(255)
+);
+
+CREATE TABLE IF NOT EXISTS partidas (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  adversario VARCHAR(100) NOT NULL,
+  data_hora DATETIME NOT NULL,
+  local VARCHAR(100),
+  placar_spfc INT DEFAULT 0,
+  placar_adv INT DEFAULT 0
+);
+
+CREATE TABLE IF NOT EXISTS planos (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  nome_plano VARCHAR(100) NOT NULL,
+  mensalidade DECIMAL(10, 2) NOT NULL,
+  beneficios TEXT
+);
